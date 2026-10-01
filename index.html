@@ -1,0 +1,3633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+
+<title>ECO MASTER</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+button{
+    font-family:inherit;
+    border:0;
+    outline:0;
+    cursor:pointer;
+}
+
+:root{
+    --verde:#35ef82;
+    --verde2:#0caf58;
+    --fondo:#031811;
+    --acento:#35ef82;
+    --rat-color:#35ef82;
+    --rat-dark:#0b9d51;
+    --rat-ear:#b77c8e;
+}
+
+/* =========================================================
+   APP
+========================================================= */
+
+#app{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #55cfff 0%,
+            #8de3ff 38%,
+            #b8edff 63%,
+            #72d88b 100%
+        );
+}
+
+/* =========================================================
+   CIELO
+========================================================= */
+
+.cielo{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    z-index:1;
+    pointer-events:none;
+}
+
+.sol{
+    position:absolute;
+    width:110px;
+    height:110px;
+    right:7%;
+    top:8%;
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #fffbd0 0%,
+            #fff176 45%,
+            #ffd54f 72%,
+            #ffb300 100%
+        );
+
+    box-shadow:
+        0 0 35px #fff176,
+        0 0 75px rgba(255,235,59,.7);
+
+    animation:solPulso 4s ease-in-out infinite;
+}
+
+@keyframes solPulso{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.06)}
+}
+
+.nube{
+    position:absolute;
+    width:170px;
+    height:48px;
+    background:rgba(255,255,255,.9);
+    border-radius:50px;
+
+    filter:drop-shadow(
+        0 5px 8px rgba(0,0,0,.08)
+    );
+
+    animation:nubeMover linear infinite;
+}
+
+.nube::before,
+.nube::after{
+    content:"";
+    position:absolute;
+    background:rgba(255,255,255,.94);
+    border-radius:50%;
+}
+
+.nube::before{
+    width:75px;
+    height:75px;
+    left:25px;
+    bottom:10px;
+}
+
+.nube::after{
+    width:95px;
+    height:95px;
+    right:20px;
+    bottom:5px;
+}
+
+.nube1{
+    top:12%;
+    left:-200px;
+    animation-duration:32s;
+}
+
+.nube2{
+    top:27%;
+    left:-240px;
+    transform:scale(.72);
+    animation-duration:42s;
+    animation-delay:7s;
+}
+
+.nube3{
+    top:7%;
+    left:-220px;
+    transform:scale(.55);
+    animation-duration:50s;
+    animation-delay:15s;
+}
+
+@keyframes nubeMover{
+    from{left:-250px}
+    to{left:calc(100% + 250px)}
+}
+
+/* =========================================================
+   MONTAÑAS
+========================================================= */
+
+.montanas{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:28%;
+    z-index:2;
+    pointer-events:none;
+}
+
+.montana{
+    position:absolute;
+    bottom:0;
+    width:0;
+    height:0;
+
+    border-left:170px solid transparent;
+    border-right:170px solid transparent;
+    border-bottom:220px solid rgba(41,151,91,.55);
+}
+
+.montana1{left:3%}
+
+.montana2{
+    left:25%;
+    transform:scale(1.25);
+}
+
+.montana3{
+    left:55%;
+    transform:scale(.9);
+}
+
+.montana4{
+    left:76%;
+    transform:scale(1.25);
+}
+
+.pasto{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:16%;
+    z-index:3;
+
+    background:
+        linear-gradient(
+            180deg,
+            #48c96b,
+            #168b4a
+        );
+
+    border-radius:
+        50% 50% 0 0 /
+        35% 35% 0 0;
+
+    box-shadow:
+        inset 0 12px 25px
+        rgba(255,255,255,.12);
+}
+
+/* =========================================================
+   HOJAS
+========================================================= */
+
+.fondoNaturaleza{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:4;
+}
+
+.hoja{
+    position:absolute;
+    opacity:.45;
+    animation:flotar linear infinite;
+}
+
+.hoja:nth-child(1){
+    left:5%;
+    font-size:30px;
+    animation-duration:12s;
+}
+
+.hoja:nth-child(2){
+    left:20%;
+    font-size:24px;
+    animation-duration:15s;
+}
+
+.hoja:nth-child(3){
+    left:38%;
+    font-size:32px;
+    animation-duration:18s;
+}
+
+.hoja:nth-child(4){
+    left:55%;
+    font-size:26px;
+    animation-duration:13s;
+}
+
+.hoja:nth-child(5){
+    left:75%;
+    font-size:30px;
+    animation-duration:17s;
+}
+
+.hoja:nth-child(6){
+    left:90%;
+    font-size:25px;
+    animation-duration:14s;
+}
+
+@keyframes flotar{
+    from{
+        transform:
+            translateY(110vh)
+            rotate(0deg);
+    }
+
+    to{
+        transform:
+            translateY(-20vh)
+            rotate(360deg);
+    }
+}
+
+/* =========================================================
+   PANTALLAS
+========================================================= */
+
+.pantalla{
+    position:absolute;
+    inset:0;
+    display:none;
+}
+
+.pantalla.activa{
+    display:flex;
+}
+
+/* =========================================================
+   INICIO
+========================================================= */
+
+#pantallaInicio{
+    z-index:10;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    padding:20px;
+}
+
+.logo{
+    width:110px;
+    height:110px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.28);
+
+    border:4px solid white;
+
+    box-shadow:
+        0 0 30px rgba(255,255,255,.5);
+
+    font-size:62px;
+
+    animation:pulso 2s infinite;
+}
+
+@keyframes pulso{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.05)}
+}
+
+.titulo{
+    margin-top:18px;
+    color:white;
+    font-size:clamp(40px,9vw,80px);
+    font-weight:900;
+    letter-spacing:3px;
+
+    text-shadow:
+        0 4px 10px
+        rgba(0,80,50,.4);
+}
+
+.subtitulo{
+    margin-top:7px;
+    color:white;
+    font-size:clamp(13px,3vw,19px);
+    font-weight:bold;
+
+    text-shadow:
+        0 2px 5px
+        rgba(0,80,50,.35);
+}
+
+.btnJugar{
+    margin-top:32px;
+    padding:17px 55px;
+    border-radius:50px;
+    background:#35ef82;
+    color:#06351f;
+    font-size:22px;
+    font-weight:900;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,100,50,.3);
+
+    transition:.15s;
+}
+
+.btnJugar:active{
+    transform:scale(.95);
+}
+
+.btnSonido{
+    position:absolute;
+    top:18px;
+    right:18px;
+
+    width:48px;
+    height:48px;
+
+    border-radius:50%;
+
+    color:white;
+    background:rgba(0,70,50,.55);
+
+    font-size:20px;
+}
+
+/* =========================================================
+   JUEGO
+========================================================= */
+
+#pantallaJuego{
+    z-index:5;
+    flex-direction:column;
+    background:transparent;
+}
+
+/* =========================================================
+   VIDEO
+========================================================= */
+
+#video{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    transform:scaleX(-1);
+
+    opacity:.14;
+    z-index:0;
+}
+
+.overlayCamara{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,90,100,.12),
+            transparent 45%,
+            rgba(0,80,40,.12)
+        );
+
+    z-index:1;
+    pointer-events:none;
+}
+
+/* =========================================================
+   ESTADO MANO
+========================================================= */
+
+#estadoMano{
+    position:absolute;
+
+    top:12px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:30;
+
+    padding:8px 15px;
+
+    border-radius:20px;
+
+    background:
+        rgba(0,70,55,.72);
+
+    color:white;
+
+    font-size:12px;
+
+    white-space:nowrap;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.18);
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.headerJuego{
+    position:relative;
+    z-index:10;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:12px 15px;
+    margin-top:32px;
+}
+
+.panelInfo{
+    padding:9px 15px;
+    border-radius:18px;
+
+    background:
+        rgba(0,70,55,.72);
+
+    color:white;
+
+    font-size:13px;
+    font-weight:bold;
+
+    backdrop-filter:blur(5px);
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,.15);
+}
+
+#puntos{
+    color:#fff176;
+}
+
+/* =========================================================
+   TACHOS
+========================================================= */
+
+.tachos{
+    position:relative;
+    z-index:8;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    gap:12px;
+
+    width:min(1100px,96%);
+
+    margin:8px auto 0;
+}
+
+.tacho{
+    position:relative;
+
+    min-height:125px;
+
+    border-radius:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+
+    color:white;
+
+    font-size:14px;
+    font-weight:900;
+    letter-spacing:.5px;
+
+    border:
+        3px solid
+        rgba(255,255,255,.75);
+
+    box-shadow:
+        0 9px 20px
+        rgba(0,0,0,.25),
+
+        inset 0 4px 0
+        rgba(255,255,255,.2);
+
+    transition:
+        transform .12s,
+        filter .12s,
+        box-shadow .12s;
+
+    overflow:hidden;
+}
+
+.tacho::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:7%;
+
+    width:86%;
+    height:12px;
+
+    border-radius:
+        0 0 8px 8px;
+
+    background:
+        rgba(0,0,0,.18);
+}
+
+.tacho::after{
+    content:"";
+
+    position:absolute;
+
+    left:-30%;
+    top:0;
+
+    width:25%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.25),
+            transparent
+        );
+
+    transform:skewX(-18deg);
+
+    animation:
+        brilloTacho 4s
+        ease-in-out infinite;
+}
+
+@keyframes brilloTacho{
+    0%,65%{left:-35%}
+    100%{left:130%}
+}
+
+.tacho.activo{
+    transform:
+        scale(1.07)
+        translateY(-4px);
+
+    filter:brightness(1.25);
+
+    box-shadow:
+        0 0 30px
+        rgba(255,255,255,.9);
+}
+
+.tachoIcono{
+    font-size:38px;
+    margin-bottom:7px;
+
+    filter:
+        drop-shadow(
+            0 3px 3px
+            rgba(0,0,0,.25)
+        );
+
+    z-index:2;
+}
+
+.papel{
+    background:
+        linear-gradient(
+            145deg,
+            #2476ff 0%,
+            #1757cf 55%,
+            #0d3e9e 100%
+        );
+}
+
+.plastico{
+    background:
+        linear-gradient(
+            145deg,
+            #ffd83d 0%,
+            #f1b900 55%,
+            #cf8800 100%
+        );
+}
+
+.vidrio{
+    background:
+        linear-gradient(
+            145deg,
+            #32df91 0%,
+            #12aa67 55%,
+            #087c4b 100%
+        );
+}
+
+.organico{
+    background:
+        linear-gradient(
+            145deg,
+            #a97846 0%,
+            #825127 55%,
+            #5d3517 100%
+        );
+}
+
+/* =========================================================
+   RESIDUO
+========================================================= */
+
+#residuo{
+    position:absolute;
+
+    left:50%;
+    top:58%;
+
+    transform:
+        translate(-50%,-50%);
+
+    width:155px;
+    min-height:125px;
+
+    z-index:20;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+
+    user-select:none;
+    touch-action:none;
+    cursor:grab;
+
+    transition:none;
+}
+
+#residuo.agarrado{
+    cursor:grabbing;
+
+    filter:
+        drop-shadow(
+            0 0 15px var(--acento)
+        )
+        drop-shadow(
+            0 8px 7px rgba(0,0,0,.4)
+        );
+}
+
+#residuoImagen{
+    width:100px;
+    height:100px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:25px;
+
+    background:
+        rgba(255,255,255,.7);
+
+    border:
+        3px solid
+        rgba(255,255,255,.9);
+
+    font-size:60px;
+
+    backdrop-filter:blur(7px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.18);
+
+    transition:
+        transform .12s,
+        box-shadow .12s;
+}
+
+#residuo.agarrado #residuoImagen{
+    transform:scale(1.08);
+
+    box-shadow:
+        0 0 25px var(--acento),
+        0 8px 20px rgba(0,0,0,.25);
+}
+
+#residuoNombre{
+    margin-top:7px;
+    color:white;
+    font-size:14px;
+    font-weight:bold;
+    text-align:center;
+
+    text-shadow:
+        0 2px 5px
+        rgba(0,0,0,.8);
+}
+
+/* =========================================================
+   MANO
+========================================================= */
+
+#mano{
+    position:absolute;
+
+    width:25px;
+    height:25px;
+
+    border-radius:50%;
+
+    background:
+        var(--acento);
+
+    border:3px solid white;
+
+    box-shadow:
+        0 0 12px var(--acento),
+        0 0 25px var(--acento);
+
+    transform:
+        translate(-50%,-50%);
+
+    z-index:50;
+    pointer-events:none;
+    display:none;
+
+    transition:
+        transform .06s ease;
+}
+
+#mano.pellizco{
+    transform:
+        translate(-50%,-50%)
+        scale(.7);
+}
+
+/* =========================================================
+   TAPPA
+========================================================= */
+
+#tappa{
+    position:absolute;
+
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    border:
+        4px solid var(--acento);
+
+    transform:
+        translate(-50%,-50%)
+        scale(.2);
+
+    opacity:0;
+
+    pointer-events:none;
+    z-index:60;
+}
+
+#tappa.mostrar{
+    animation:tappaAnim .55s ease-out;
+}
+
+#tappaTexto{
+    position:absolute;
+
+    transform:
+        translate(-50%,-50%);
+
+    color:white;
+    font-size:17px;
+    font-weight:900;
+
+    text-shadow:
+        0 2px 5px black;
+
+    z-index:61;
+
+    opacity:0;
+    pointer-events:none;
+}
+
+#tappaTexto.mostrar{
+    animation:tappaTextoAnim .55s ease-out;
+}
+
+@keyframes tappaAnim{
+    0%{
+        transform:
+            translate(-50%,-50%)
+            scale(.2);
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translate(-50%,-50%)
+            scale(1.3);
+        opacity:0;
+    }
+}
+
+@keyframes tappaTextoAnim{
+    0%{
+        opacity:1;
+        transform:
+            translate(-50%,-50%)
+            scale(.7);
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translate(-50%,-80%)
+            scale(1.1);
+    }
+}
+
+/* =========================================================
+   MENSAJE
+========================================================= */
+
+#mensaje{
+    position:absolute;
+
+    left:50%;
+    bottom:14%;
+
+    transform:
+        translateX(-50%);
+
+    z-index:40;
+
+    padding:13px 22px;
+
+    border-radius:25px;
+
+    background:
+        rgba(0,70,55,.85);
+
+    color:white;
+
+    font-size:17px;
+    font-weight:bold;
+    text-align:center;
+
+    opacity:0;
+    pointer-events:none;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.2);
+}
+
+#mensaje.mostrar{
+    animation:
+        mensajeAnim 1s ease;
+}
+
+@keyframes mensajeAnim{
+    0%{
+        opacity:0;
+        transform:
+            translate(-50%,20px);
+    }
+
+    20%,80%{
+        opacity:1;
+        transform:
+            translate(-50%,0);
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translate(-50%,-15px);
+    }
+}
+
+/* =========================================================
+   RATÓN
+========================================================= */
+
+#animal{
+    position:absolute;
+
+    left:-140px;
+    bottom:7%;
+
+    width:115px;
+    height:90px;
+
+    z-index:25;
+    pointer-events:none;
+
+    animation:
+        ratonCamina 18s linear infinite;
+}
+
+.raton{
+    position:relative;
+
+    width:115px;
+    height:85px;
+
+    transform-origin:center bottom;
+
+    filter:
+        drop-shadow(
+            0 7px 5px
+            rgba(0,0,0,.45)
+        );
+
+    animation:
+        ratonPasitos .45s
+        ease-in-out infinite;
+}
+
+.cuerpo{
+    position:absolute;
+
+    left:27px;
+    top:30px;
+
+    width:65px;
+    height:42px;
+
+    background:var(--rat-color);
+
+    border-radius:
+        55% 48% 45% 55%;
+
+    box-shadow:
+        inset -7px -6px 0
+        rgba(0,0,0,.12),
+
+        inset 7px 6px 0
+        rgba(255,255,255,.1);
+}
+
+.cabeza{
+    position:absolute;
+
+    left:66px;
+    top:17px;
+
+    width:43px;
+    height:42px;
+
+    background:var(--rat-color);
+
+    border-radius:
+        55% 50% 48% 55%;
+
+    z-index:4;
+
+    box-shadow:
+        inset -5px -5px 0
+        rgba(0,0,0,.12);
+}
+
+.oreja{
+    position:absolute;
+
+    width:24px;
+    height:24px;
+
+    border-radius:50%;
+
+    background:var(--rat-color);
+
+    border:
+        3px solid
+        var(--rat-dark);
+
+    z-index:1;
+}
+
+.oreja::after{
+    content:"";
+
+    position:absolute;
+
+    width:12px;
+    height:12px;
+
+    left:3px;
+    top:3px;
+
+    border-radius:50%;
+
+    background:var(--rat-ear);
+}
+
+.oreja1{
+    left:67px;
+    top:3px;
+}
+
+.oreja2{
+    left:88px;
+    top:7px;
+}
+
+.ojo{
+    position:absolute;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#111;
+
+    left:25px;
+    top:12px;
+}
+
+.nariz{
+    position:absolute;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#262626;
+
+    right:-3px;
+    top:23px;
+}
+
+.bigote{
+    position:absolute;
+
+    height:2px;
+    width:25px;
+
+    background:
+        rgba(255,255,255,.8);
+
+    right:-22px;
+
+    transform-origin:left center;
+}
+
+.b1{
+    top:21px;
+    transform:rotate(-12deg);
+}
+
+.b2{
+    top:26px;
+    transform:rotate(0deg);
+}
+
+.b3{
+    top:31px;
+    transform:rotate(12deg);
+}
+
+.cola{
+    position:absolute;
+
+    left:5px;
+    top:55px;
+
+    width:42px;
+    height:27px;
+
+    border-bottom:
+        5px solid
+        var(--rat-color);
+
+    border-radius:
+        0 0 80% 80%;
+
+    transform:rotate(-18deg);
+
+    z-index:-1;
+}
+
+.pata{
+    position:absolute;
+
+    width:17px;
+    height:8px;
+
+    background:
+        var(--rat-dark);
+
+    border-radius:50%;
+
+    top:68px;
+}
+
+.pata1{left:40px}
+.pata2{left:68px}
+
+@keyframes ratonCamina{
+    0%{
+        left:-140px;
+        transform:scaleX(1);
+    }
+
+    45%{
+        left:43%;
+        transform:scaleX(1);
+    }
+
+    50%{
+        left:50%;
+        transform:scaleX(-1);
+    }
+
+    95%{
+        left:105%;
+        transform:scaleX(-1);
+    }
+
+    100%{
+        left:110%;
+        transform:scaleX(-1);
+    }
+}
+
+@keyframes ratonPasitos{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-3px);
+    }
+}
+
+/* =========================================================
+   PALETA
+========================================================= */
+
+#btnPaleta{
+    position:absolute;
+
+    right:18px;
+    bottom:18px;
+
+    width:48px;
+    height:48px;
+
+    border-radius:50%;
+
+    background:
+        rgba(0,70,55,.8);
+
+    color:white;
+
+    font-size:21px;
+
+    z-index:70;
+}
+
+#paleta{
+    position:absolute;
+
+    right:18px;
+    bottom:75px;
+
+    display:none;
+
+    flex-direction:column;
+
+    gap:7px;
+
+    padding:9px;
+
+    border-radius:18px;
+
+    background:
+        rgba(0,70,55,.9);
+
+    z-index:70;
+}
+
+#paleta.abierta{
+    display:flex;
+}
+
+.color{
+    width:30px;
+    height:30px;
+
+    border-radius:50%;
+
+    border:2px solid white;
+}
+
+/* =========================================================
+   PERMISO CÁMARA
+========================================================= */
+
+#permisoCamara{
+    position:absolute;
+    inset:0;
+
+    background:
+        rgba(0,55,45,.88);
+
+    z-index:100;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+}
+
+#permisoCamara.mostrar{
+    display:flex;
+}
+
+.permisoCaja{
+    width:min(430px,95%);
+
+    padding:30px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #e5fff1
+        );
+
+    border:
+        3px solid
+        var(--acento);
+
+    color:#073d25;
+
+    box-shadow:
+        0 0 35px
+        rgba(53,239,130,.35);
+}
+
+.permisoCaja h2{
+    margin-bottom:12px;
+}
+
+.permisoCaja p{
+    color:#356451;
+    line-height:1.5;
+}
+
+.btnCamara{
+    margin-top:20px;
+
+    padding:
+        13px 25px;
+
+    border-radius:30px;
+
+    background:
+        var(--acento);
+
+    color:#031811;
+
+    font-weight:900;
+}
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+#pantallaFinal{
+    z-index:120;
+
+    align-items:center;
+    justify-content:center;
+
+    flex-direction:column;
+
+    text-align:center;
+
+    padding:25px;
+}
+
+.finalIcono{
+    font-size:80px;
+}
+
+.finalTitulo{
+    margin-top:15px;
+
+    color:white;
+
+    font-size:
+        clamp(35px,8vw,65px);
+
+    font-weight:900;
+
+    text-shadow:
+        0 4px 10px
+        rgba(0,80,50,.4);
+}
+
+.finalTexto{
+    margin-top:10px;
+
+    color:white;
+
+    font-size:18px;
+    font-weight:bold;
+}
+
+#puntosFinal{
+    margin-top:15px;
+
+    font-size:40px;
+
+    color:#fff176;
+
+    font-weight:900;
+}
+
+.btnOtraVez{
+    margin-top:25px;
+
+    padding:
+        15px 35px;
+
+    border-radius:30px;
+
+    background:
+        var(--acento);
+
+    color:#031811;
+
+    font-weight:900;
+
+    font-size:17px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:700px){
+
+    .sol{
+        width:75px;
+        height:75px;
+
+        right:5%;
+        top:9%;
+    }
+
+    .tachos{
+        width:97%;
+        gap:6px;
+        margin-top:4px;
+    }
+
+    .tacho{
+        min-height:95px;
+        border-radius:11px;
+        font-size:9px;
+    }
+
+    .tachoIcono{
+        font-size:27px;
+    }
+
+    #residuoImagen{
+        width:80px;
+        height:80px;
+        font-size:45px;
+    }
+
+    #residuo{
+        width:120px;
+    }
+
+    #animal{
+        transform:scale(.8);
+        transform-origin:left bottom;
+    }
+}
+
+@media(max-height:600px){
+
+    .tachos{
+        transform:scale(.9);
+        transform-origin:top center;
+    }
+
+    .tacho{
+        min-height:85px;
+    }
+
+    #residuo{
+        top:62%;
+    }
+
+    #animal{
+        bottom:2%;
+        transform:scale(.7);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+<div class="cielo">
+
+    <div class="sol"></div>
+
+    <div class="nube nube1"></div>
+    <div class="nube nube2"></div>
+    <div class="nube nube3"></div>
+
+</div>
+
+<div class="montanas">
+
+    <div class="montana montana1"></div>
+    <div class="montana montana2"></div>
+    <div class="montana montana3"></div>
+    <div class="montana montana4"></div>
+
+</div>
+
+<div class="pasto"></div>
+
+<div class="fondoNaturaleza">
+
+    <div class="hoja">🍃</div>
+    <div class="hoja">🌿</div>
+    <div class="hoja">🌱</div>
+    <div class="hoja">♻️</div>
+    <div class="hoja">🍀</div>
+    <div class="hoja">🌳</div>
+
+</div>
+
+<section id="pantallaInicio" class="pantalla activa">
+
+    <button id="btnSonido" class="btnSonido">
+        🔊
+    </button>
+
+    <div class="logo">
+        ♻️
+    </div>
+
+    <h1 class="titulo">
+        ECO MASTER
+    </h1>
+
+    <p class="subtitulo">
+        ¡Recicla correctamente y conviértete
+        en un maestro ecológico!
+    </p>
+
+    <button id="comenzarJuego" class="btnJugar">
+        JUGAR
+    </button>
+
+</section>
+
+<section id="pantallaJuego" class="pantalla">
+
+    <video
+        id="video"
+        autoplay
+        muted
+        playsinline>
+    </video>
+
+    <div class="overlayCamara"></div>
+
+    <div id="estadoMano">
+        🖐️ Pulsa activar cámara
+    </div>
+
+    <div class="headerJuego">
+
+        <div class="panelInfo">
+            ⭐ Puntos:
+            <span id="puntos">0</span>
+        </div>
+
+        <div class="panelInfo">
+            📦
+            <span id="progreso">1 / 20</span>
+        </div>
+
+    </div>
+
+    <div class="tachos">
+
+        <div class="tacho papel" data-tipo="papel">
+            <div class="tachoIcono">📄</div>
+            PAPEL
+        </div>
+
+        <div class="tacho plastico" data-tipo="plastico">
+            <div class="tachoIcono">🧴</div>
+            PLÁSTICO
+        </div>
+
+        <div class="tacho vidrio" data-tipo="vidrio">
+            <div class="tachoIcono">🍾</div>
+            VIDRIO
+        </div>
+
+        <div class="tacho organico" data-tipo="organico">
+            <div class="tachoIcono">🍎</div>
+            ORGÁNICO
+        </div>
+
+    </div>
+
+    <div id="residuo">
+
+        <div id="residuoImagen">
+            📦
+        </div>
+
+        <div id="residuoNombre">
+            Residuo
+        </div>
+
+    </div>
+
+    <div id="mano"></div>
+
+    <div id="tappa"></div>
+
+    <div id="tappaTexto">
+        TAP!
+    </div>
+
+    <div id="mensaje"></div>
+
+    <div id="animal">
+
+        <div class="raton">
+
+            <div class="oreja oreja1"></div>
+            <div class="oreja oreja2"></div>
+
+            <div class="cabeza">
+
+                <div class="ojo"></div>
+                <div class="nariz"></div>
+
+                <div class="bigote b1"></div>
+                <div class="bigote b2"></div>
+                <div class="bigote b3"></div>
+
+            </div>
+
+            <div class="cuerpo"></div>
+            <div class="cola"></div>
+
+            <div class="pata pata1"></div>
+            <div class="pata pata2"></div>
+
+        </div>
+
+    </div>
+
+    <button id="btnPaleta">
+        🎨
+    </button>
+
+    <div id="paleta">
+
+        <button class="color"
+                data-color="#35ef82"
+                style="background:#35ef82">
+        </button>
+
+        <button class="color"
+                data-color="#45bfff"
+                style="background:#45bfff">
+        </button>
+
+        <button class="color"
+                data-color="#bb6cff"
+                style="background:#bb6cff">
+        </button>
+
+        <button class="color"
+                data-color="#ff5eae"
+                style="background:#ff5eae">
+        </button>
+
+        <button class="color"
+                data-color="#ff9f43"
+                style="background:#ff9f43">
+        </button>
+
+    </div>
+
+</section>
+
+<div id="permisoCamara">
+
+    <div class="permisoCaja">
+
+        <h2>
+            📷 Activa tu cámara
+        </h2>
+
+        <p>
+            ECO MASTER necesita usar tu cámara
+            para detectar el movimiento de tu mano.
+        </p>
+
+        <button
+            id="btnCamara"
+            class="btnCamara">
+            ACTIVAR CÁMARA
+        </button>
+
+    </div>
+
+</div>
+
+<section id="pantallaFinal" class="pantalla">
+
+    <div class="finalIcono">
+        🏆
+    </div>
+
+    <h2 class="finalTitulo">
+        ¡MUY BIEN!
+    </h2>
+
+    <p class="finalTexto">
+        Completaste el reciclaje.
+    </p>
+
+    <div id="puntosFinal">
+        0 puntos
+    </div>
+
+    <button
+        id="jugarOtraVez"
+        class="btnOtraVez">
+        🔄 JUGAR OTRA VEZ
+    </button>
+
+</section>
+
+</div>
+
+<script>
+
+/* =========================================================
+   ELEMENTOS
+========================================================= */
+
+const pantallaInicio =
+    document.getElementById("pantallaInicio");
+
+const pantallaJuego =
+    document.getElementById("pantallaJuego");
+
+const pantallaFinal =
+    document.getElementById("pantallaFinal");
+
+const comenzarJuego =
+    document.getElementById("comenzarJuego");
+
+const jugarOtraVez =
+    document.getElementById("jugarOtraVez");
+
+const btnSonido =
+    document.getElementById("btnSonido");
+
+const btnCamara =
+    document.getElementById("btnCamara");
+
+const permisoCamara =
+    document.getElementById("permisoCamara");
+
+const video =
+    document.getElementById("video");
+
+const residuo =
+    document.getElementById("residuo");
+
+const residuoImagen =
+    document.getElementById("residuoImagen");
+
+const residuoNombre =
+    document.getElementById("residuoNombre");
+
+const mano =
+    document.getElementById("mano");
+
+const puntosTexto =
+    document.getElementById("puntos");
+
+const progresoTexto =
+    document.getElementById("progreso");
+
+const mensaje =
+    document.getElementById("mensaje");
+
+const estadoMano =
+    document.getElementById("estadoMano");
+
+const tappa =
+    document.getElementById("tappa");
+
+const tappaTexto =
+    document.getElementById("tappaTexto");
+
+const puntosFinal =
+    document.getElementById("puntosFinal");
+
+const btnPaleta =
+    document.getElementById("btnPaleta");
+
+const paleta =
+    document.getElementById("paleta");
+
+const tachos =
+    document.querySelectorAll(".tacho");
+
+/* =========================================================
+   AUDIO
+========================================================= */
+
+let sonidoActivo = true;
+
+const musicaFondo =
+    new Audio("musica.mp3");
+
+musicaFondo.loop = true;
+musicaFondo.volume = .25;
+
+function iniciarAudio(){
+
+    if(!sonidoActivo)
+        return;
+
+    musicaFondo.play().catch(()=>{});
+
+}
+
+function detenerMusica(){
+
+    musicaFondo.pause();
+
+}
+
+/* =========================================================
+   AUDIO EFECTOS
+========================================================= */
+
+const AudioContext =
+    window.AudioContext ||
+    window.webkitAudioContext;
+
+let audioContext = null;
+
+function obtenerAudio(){
+
+    if(!audioContext){
+
+        audioContext =
+            new AudioContext();
+
+    }
+
+    if(
+        audioContext.state ===
+        "suspended"
+    ){
+
+        audioContext.resume();
+
+    }
+
+    return audioContext;
+}
+
+function tono(
+    frecuencia,
+    duracion,
+    tipo="sine",
+    volumen=.08
+){
+
+    if(!sonidoActivo)
+        return;
+
+    const ctx =
+        obtenerAudio();
+
+    const osc =
+        ctx.createOscillator();
+
+    const gain =
+        ctx.createGain();
+
+    osc.type =
+        tipo;
+
+    osc.frequency.value =
+        frecuencia;
+
+    gain.gain.setValueAtTime(
+        volumen,
+        ctx.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        .001,
+        ctx.currentTime + duracion
+    );
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start();
+
+    osc.stop(
+        ctx.currentTime +
+        duracion
+    );
+
+}
+
+function sonidoTap(){
+
+    tono(
+        700,
+        .09,
+        "sine",
+        .07
+    );
+
+}
+
+function sonidoCorrecto(){
+
+    tono(
+        600,
+        .10,
+        "sine",
+        .08
+    );
+
+    setTimeout(
+        ()=>{
+            tono(
+                900,
+                .14,
+                "sine",
+                .09
+            );
+        },
+        80
+    );
+
+}
+
+function sonidoError(){
+
+    tono(
+        180,
+        .18,
+        "sawtooth",
+        .07
+    );
+
+}
+
+function sonidoPop(){
+
+    tono(
+        800,
+        .10,
+        "sine",
+        .08
+    );
+
+}
+
+/* =========================================================
+   SONIDO BOTÓN
+========================================================= */
+
+btnSonido.addEventListener(
+    "click",
+    ()=>{
+
+        sonidoActivo =
+            !sonidoActivo;
+
+        if(sonidoActivo){
+
+            btnSonido.textContent =
+                "🔊";
+
+            iniciarAudio();
+
+        }else{
+
+            btnSonido.textContent =
+                "🔇";
+
+            detenerMusica();
+
+        }
+
+    }
+);
+
+/* =========================================================
+   RESIDUOS
+========================================================= */
+
+const residuosBase = [
+
+    {
+        tipo:"papel",
+        nombre:"Periódico",
+        emoji:"📰"
+    },
+
+    {
+        tipo:"papel",
+        nombre:"Caja de cartón",
+        emoji:"📦"
+    },
+
+    {
+        tipo:"papel",
+        nombre:"Cuaderno",
+        emoji:"📓"
+    },
+
+    {
+        tipo:"papel",
+        nombre:"Hoja",
+        emoji:"📄"
+    },
+
+    {
+        tipo:"papel",
+        nombre:"Papel",
+        emoji:"📃"
+    },
+
+    {
+        tipo:"plastico",
+        nombre:"Botella plástica",
+        emoji:"🧴"
+    },
+
+    {
+        tipo:"plastico",
+        nombre:"Envase",
+        emoji:"🥤"
+    },
+
+    {
+        tipo:"plastico",
+        nombre:"Vaso plástico",
+        emoji:"🥛"
+    },
+
+    {
+        tipo:"plastico",
+        nombre:"Botella",
+        emoji:"🍼"
+    },
+
+    {
+        tipo:"plastico",
+        nombre:"Bolsa",
+        emoji:"🛍️"
+    },
+
+    {
+        tipo:"vidrio",
+        nombre:"Botella de vidrio",
+        emoji:"🍾"
+    },
+
+    {
+        tipo:"vidrio",
+        nombre:"Frasco",
+        emoji:"🫙"
+    },
+
+    {
+        tipo:"vidrio",
+        nombre:"Copa",
+        emoji:"🍷"
+    },
+
+    {
+        tipo:"vidrio",
+        nombre:"Botella",
+        emoji:"🍶"
+    },
+
+    {
+        tipo:"vidrio",
+        nombre:"Vidrio",
+        emoji:"🔮"
+    },
+
+    {
+        tipo:"organico",
+        nombre:"Manzana",
+        emoji:"🍎"
+    },
+
+    {
+        tipo:"organico",
+        nombre:"Plátano",
+        emoji:"🍌"
+    },
+
+    {
+        tipo:"organico",
+        nombre:"Hoja",
+        emoji:"🍂"
+    },
+
+    {
+        tipo:"organico",
+        nombre:"Verdura",
+        emoji:"🥦"
+    },
+
+    {
+        tipo:"organico",
+        nombre:"Restos de comida",
+        emoji:"🥕"
+    }
+
+];
+
+let residuos = [];
+let indiceResiduo = 0;
+let puntos = 0;
+let residuoActual = null;
+
+/* =========================================================
+   ESTADO DEL AGARRE
+========================================================= */
+
+let agarrado = false;
+
+let ultimoEstadoPinza = false;
+
+/*
+   Guarda la posición exacta donde
+   se agarró el residuo.
+*/
+
+let agarreOffsetX = 0;
+let agarreOffsetY = 0;
+
+/*
+   NUEVO:
+
+   Evita que un pequeño error de MediaPipe
+   haga que el residuo se suelte.
+
+   Se necesitan varios frames abiertos
+   antes de considerar que realmente
+   soltaste.
+*/
+
+let framesAbiertos = 0;
+
+const FRAMES_PARA_SOLTAR = 4;
+
+/*
+   También toleramos pequeñas pérdidas
+   momentáneas de detección.
+*/
+
+let framesSinMano = 0;
+
+const FRAMES_PERDER_MANO = 12;
+
+/* =========================================================
+   MEZCLAR
+========================================================= */
+
+function mezclarArray(array){
+
+    const copia =
+        [...array];
+
+    for(
+        let i = copia.length - 1;
+        i > 0;
+        i--
+    ){
+
+        const j =
+            Math.floor(
+                Math.random() *
+                (i + 1)
+            );
+
+        [
+            copia[i],
+            copia[j]
+        ] =
+        [
+            copia[j],
+            copia[i]
+        ];
+
+    }
+
+    return copia;
+
+}
+
+/* =========================================================
+   REINICIAR
+========================================================= */
+
+function reiniciarJuego(){
+
+    puntos = 0;
+
+    indiceResiduo = 0;
+
+    residuos =
+        mezclarArray(
+            residuosBase
+        );
+
+    puntosTexto.textContent =
+        "0";
+
+    agarrado = false;
+
+    ultimoEstadoPinza = false;
+
+    agarreOffsetX = 0;
+
+    agarreOffsetY = 0;
+
+    framesAbiertos = 0;
+
+    framesSinMano = 0;
+
+    residuo.classList.remove(
+        "agarrado"
+    );
+
+    residuo.style.transition =
+        "none";
+
+    mostrarSiguiente();
+
+}
+
+/* =========================================================
+   SIGUIENTE
+========================================================= */
+
+function mostrarSiguiente(){
+
+    if(
+        indiceResiduo >=
+        residuos.length
+    ){
+
+        terminarJuego();
+
+        return;
+
+    }
+
+    residuoActual =
+        residuos[
+            indiceResiduo
+        ];
+
+    residuoImagen.textContent =
+        residuoActual.emoji;
+
+    residuoNombre.textContent =
+        residuoActual.nombre;
+
+    progresoTexto.textContent =
+        `${indiceResiduo + 1} / ${residuos.length}`;
+
+    residuo.style.display =
+        "flex";
+
+    residuo.style.opacity =
+        "1";
+
+    residuo.style.transition =
+        "none";
+
+    residuo.style.transform =
+        "translate(-50%,-50%)";
+
+    residuo.style.left =
+        "50%";
+
+    residuo.style.top =
+        "58%";
+
+    tachos.forEach(
+        tacho=>{
+            tacho.classList.remove(
+                "activo"
+            );
+        }
+    );
+
+}
+
+/* =========================================================
+   MENSAJE
+========================================================= */
+
+function mostrarMensaje(texto){
+
+    mensaje.textContent =
+        texto;
+
+    mensaje.classList.remove(
+        "mostrar"
+    );
+
+    void mensaje.offsetWidth;
+
+    mensaje.classList.add(
+        "mostrar"
+    );
+
+}
+
+/* =========================================================
+   TAPPA
+========================================================= */
+
+function mostrarTappa(
+    x,
+    y,
+    texto="TAP!"
+){
+
+    tappa.style.left =
+        x + "px";
+
+    tappa.style.top =
+        y + "px";
+
+    tappaTexto.style.left =
+        x + "px";
+
+    tappaTexto.style.top =
+        y + "px";
+
+    tappaTexto.textContent =
+        texto;
+
+    tappa.classList.remove(
+        "mostrar"
+    );
+
+    tappaTexto.classList.remove(
+        "mostrar"
+    );
+
+    void tappa.offsetWidth;
+
+    tappa.classList.add(
+        "mostrar"
+    );
+
+    tappaTexto.classList.add(
+        "mostrar"
+    );
+
+    sonidoTap();
+
+}
+
+/* =========================================================
+   MOVER RESIDUO
+========================================================= */
+
+function moverResiduo(x,y){
+
+    if(!agarrado)
+        return;
+
+    /*
+       El dedo conserva exactamente
+       el punto donde agarró el objeto.
+    */
+
+    let nuevaX =
+        x - agarreOffsetX;
+
+    let nuevaY =
+        y - agarreOffsetY;
+
+    const mitadAncho =
+        residuo.offsetWidth / 2;
+
+    const mitadAlto =
+        residuo.offsetHeight / 2;
+
+    /*
+       IMPORTANTE:
+
+       No usamos un límite extraño que
+       impida ir a la izquierda.
+
+       El residuo puede llegar hasta
+       cualquier borde de la pantalla.
+    */
+
+    nuevaX =
+        Math.max(
+            mitadAncho,
+            Math.min(
+                window.innerWidth -
+                mitadAncho,
+                nuevaX
+            )
+        );
+
+    nuevaY =
+        Math.max(
+            mitadAlto,
+            Math.min(
+                window.innerHeight -
+                mitadAlto,
+                nuevaY
+            )
+        );
+
+    residuo.style.left =
+        nuevaX + "px";
+
+    residuo.style.top =
+        nuevaY + "px";
+
+}
+
+/* =========================================================
+   BUSCAR TACHO
+========================================================= */
+
+function buscarTacho(){
+
+    const rect =
+        residuo.getBoundingClientRect();
+
+    const centroX =
+        rect.left +
+        rect.width / 2;
+
+    const centroY =
+        rect.top +
+        rect.height / 2;
+
+    let encontrado =
+        null;
+
+    tachos.forEach(
+        tacho=>{
+
+            const r =
+                tacho.getBoundingClientRect();
+
+            if(
+                centroX >= r.left &&
+                centroX <= r.right &&
+                centroY >= r.top &&
+                centroY <= r.bottom
+            ){
+
+                encontrado =
+                    tacho;
+
+            }
+
+        }
+    );
+
+    tachos.forEach(
+        tacho=>{
+
+            tacho.classList.remove(
+                "activo"
+            );
+
+        }
+    );
+
+    if(encontrado){
+
+        encontrado.classList.add(
+            "activo"
+        );
+
+    }
+
+    return encontrado;
+
+}
+
+/* =========================================================
+   SOLTAR
+========================================================= */
+
+function soltarResiduo(){
+
+    if(!agarrado)
+        return;
+
+    agarrado = false;
+
+    ultimoEstadoPinza = false;
+
+    framesAbiertos = 0;
+
+    agarreOffsetX = 0;
+
+    agarreOffsetY = 0;
+
+    residuo.classList.remove(
+        "agarrado"
+    );
+
+    const tacho =
+        buscarTacho();
+
+    /*
+       FUERA DE UN TACHO:
+
+       No es error.
+       No suma ni resta.
+    */
+
+    if(!tacho){
+
+        mostrarMensaje(
+            "🖐️ Colócalo dentro de un tacho"
+        );
+
+        tachos.forEach(
+            tacho=>{
+                tacho.classList.remove(
+                    "activo"
+                );
+            }
+        );
+
+        residuo.style.transition =
+            "left .25s ease, top .25s ease";
+
+        residuo.style.left =
+            "50%";
+
+        residuo.style.top =
+            "58%";
+
+        setTimeout(
+            ()=>{
+                residuo.style.transition =
+                    "none";
+            },
+            280
+        );
+
+        return;
+
+    }
+
+    /*
+       SOLO AQUÍ se evalúa.
+    */
+
+    if(
+        tacho.dataset.tipo ===
+        residuoActual.tipo
+    ){
+
+        acierto(tacho);
+
+    }else{
+
+        error();
+
+    }
+
+}
+
+/* =========================================================
+   ACIERTO
+========================================================= */
+
+function acierto(tacho){
+
+    puntos += 100;
+
+    puntosTexto.textContent =
+        puntos;
+
+    sonidoCorrecto();
+
+    mostrarMensaje(
+        "♻️ ¡MUY BIEN! +100"
+    );
+
+    const rect =
+        tacho.getBoundingClientRect();
+
+    mostrarTappa(
+        rect.left +
+        rect.width / 2,
+
+        rect.top +
+        rect.height / 2,
+
+        "+100"
+    );
+
+    tacho.classList.add(
+        "activo"
+    );
+
+    residuo.style.transition =
+        "transform .25s ease, opacity .25s ease";
+
+    residuo.style.transform =
+        "translate(-50%,-50%) scale(1.3)";
+
+    residuo.style.opacity =
+        "0";
+
+    setTimeout(
+        ()=>{
+
+            tacho.classList.remove(
+                "activo"
+            );
+
+            indiceResiduo++;
+
+            mostrarSiguiente();
+
+        },
+        450
+    );
+
+}
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+function error(){
+
+    sonidoError();
+
+    mostrarMensaje(
+        "❌ Ese residuo no va ahí"
+    );
+
+    tachos.forEach(
+        tacho=>{
+            tacho.classList.remove(
+                "activo"
+            );
+        }
+    );
+
+    residuo.style.transition =
+        "left .25s ease, top .25s ease";
+
+    residuo.style.left =
+        "50%";
+
+    residuo.style.top =
+        "58%";
+
+    setTimeout(
+        ()=>{
+            residuo.style.transition =
+                "none";
+        },
+        280
+    );
+
+}
+
+/* =========================================================
+   CANCELAR AGARRE
+========================================================= */
+
+function cancelarAgarre(){
+
+    agarrado = false;
+
+    ultimoEstadoPinza = false;
+
+    framesAbiertos = 0;
+
+    agarreOffsetX = 0;
+
+    agarreOffsetY = 0;
+
+    residuo.classList.remove(
+        "agarrado"
+    );
+
+    tachos.forEach(
+        tacho=>{
+            tacho.classList.remove(
+                "activo"
+            );
+        }
+    );
+
+    /*
+       NO devolvemos inmediatamente el objeto
+       al centro por una pequeña pérdida de mano.
+    */
+
+}
+
+/* =========================================================
+   MEDIAPIPE
+========================================================= */
+
+let manos = null;
+
+let camera = null;
+
+let mediaPipeCargando = false;
+
+let mediaPipeListo = false;
+
+/* =========================================================
+   CARGAR SCRIPT
+========================================================= */
+
+function cargarScript(src){
+
+    return new Promise(
+        (resolve,reject)=>{
+
+            const script =
+                document.createElement(
+                    "script"
+                );
+
+            script.src =
+                src;
+
+            script.async =
+                true;
+
+            script.onload =
+                resolve;
+
+            script.onerror =
+                reject;
+
+            document.head.appendChild(
+                script
+            );
+
+        }
+    );
+
+}
+
+/* =========================================================
+   PREPARAR MEDIAPIPE
+========================================================= */
+
+async function prepararMediaPipe(){
+
+    if(mediaPipeListo)
+        return true;
+
+    if(mediaPipeCargando){
+
+        return new Promise(
+            resolve=>{
+
+                const revisar =
+                    setInterval(
+                        ()=>{
+
+                            if(
+                                mediaPipeListo ||
+                                !mediaPipeCargando
+                            ){
+
+                                clearInterval(
+                                    revisar
+                                );
+
+                                resolve(
+                                    mediaPipeListo
+                                );
+
+                            }
+
+                        },
+                        50
+                    );
+
+            }
+        );
+
+    }
+
+    mediaPipeCargando = true;
+
+    try{
+
+        if(!window.Hands){
+
+            await cargarScript(
+                "https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"
+            );
+
+        }
+
+        if(!window.Camera){
+
+            await cargarScript(
+                "https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"
+            );
+
+        }
+
+        mediaPipeListo =
+            true;
+
+        mediaPipeCargando =
+            false;
+
+        return true;
+
+    }catch(error){
+
+        console.error(
+            "Error cargando MediaPipe:",
+            error
+        );
+
+        mediaPipeCargando =
+            false;
+
+        return false;
+
+    }
+
+}
+
+/* =========================================================
+   INICIAR MEDIAPIPE
+========================================================= */
+
+async function iniciarMediaPipe(){
+
+    const listo =
+        await prepararMediaPipe();
+
+    if(!listo){
+
+        estadoMano.textContent =
+            "⚠️ No se pudo cargar el detector";
+
+        return;
+
+    }
+
+    if(manos)
+        return;
+
+    manos =
+        new Hands({
+
+            locateFile:
+                file =>
+                    `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
+
+        });
+
+    manos.setOptions({
+
+        maxNumHands:1,
+
+        modelComplexity:0,
+
+        minDetectionConfidence:.45,
+
+        minTrackingConfidence:.45,
+
+        selfieMode:false
+
+    });
+
+    manos.onResults(
+        procesarManos
+    );
+
+    camera =
+        new Camera(
+            video,
+            {
+
+                onFrame:
+                    async()=>{
+
+                        if(
+                            manos &&
+                            pantallaJuego.classList.contains(
+                                "activa"
+                            )
+                        ){
+
+                            await manos.send({
+                                image:video
+                            });
+
+                        }
+
+                    },
+
+                width:1280,
+
+                height:720
+
+            }
+        );
+
+    await camera.start();
+
+}
+
+/* =========================================================
+   PROCESAR MANOS
+========================================================= */
+
+function procesarManos(results){
+
+    /*
+       =====================================================
+       SIN MANO
+       =====================================================
+    */
+
+    if(
+        !results.multiHandLandmarks ||
+        results.multiHandLandmarks.length === 0
+    ){
+
+        mano.style.display =
+            "none";
+
+        framesSinMano++;
+
+        /*
+           Si estamos agarrando, NO soltamos
+           inmediatamente.
+
+           Damos unos frames de tolerancia.
+        */
+
+        if(
+            agarrado &&
+            framesSinMano >
+            FRAMES_PERDER_MANO
+        ){
+
+            cancelarAgarre();
+
+        }
+
+        if(!agarrado){
+
+            estadoMano.textContent =
+                "🖐️ Busca tu mano...";
+
+        }
+
+        return;
+
+    }
+
+    framesSinMano = 0;
+
+    const puntosMano =
+        results.multiHandLandmarks[0];
+
+    mano.style.display =
+        "block";
+
+    const dedo =
+        puntosMano[8];
+
+    const pulgar =
+        puntosMano[4];
+
+    /*
+       Coordenadas invertidas porque
+       la cámara se muestra como espejo.
+    */
+
+    const x =
+        (1 - dedo.x) *
+        window.innerWidth;
+
+    const y =
+        dedo.y *
+        window.innerHeight;
+
+    mano.style.left =
+        x + "px";
+
+    mano.style.top =
+        y + "px";
+
+    /*
+       =====================================================
+       DETECCIÓN DE PINZA
+       =====================================================
+
+       Antes:
+       un solo umbral.
+
+       Ahora:
+       usamos histéresis.
+
+       Para empezar a agarrar:
+       distancia < 0.12
+
+       Para soltar:
+       distancia > 0.17
+
+       Esto evita que el objeto se suelte
+       mientras mueves la mano.
+    */
+
+    const dx =
+        dedo.x -
+        pulgar.x;
+
+    const dy =
+        dedo.y -
+        pulgar.y;
+
+    const distancia =
+        Math.sqrt(
+            dx * dx +
+            dy * dy
+        );
+
+    let pellizcando;
+
+    if(agarrado){
+
+        /*
+           Ya estamos agarrando.
+
+           Se mantiene agarrado hasta que
+           los dedos realmente se separen.
+        */
+
+        pellizcando =
+            distancia < .17;
+
+    }else{
+
+        /*
+           Para comenzar el agarre
+           exigimos un pellizco más cerrado.
+        */
+
+        pellizcando =
+            distancia < .12;
+
+    }
+
+    if(pellizcando){
+
+        mano.classList.add(
+            "pellizco"
+        );
+
+        framesAbiertos = 0;
+
+    }else{
+
+        mano.classList.remove(
+            "pellizco"
+        );
+
+    }
+
+    /* =====================================================
+       AGARRAR
+    ===================================================== */
+
+    if(
+        pellizcando &&
+        !ultimoEstadoPinza &&
+        !agarrado
+    ){
+
+        const r =
+            residuo.getBoundingClientRect();
+
+        if(
+            x >= r.left &&
+            x <= r.right &&
+            y >= r.top &&
+            y <= r.bottom
+        ){
+
+            agarrado = true;
+
+            /*
+               Guardamos exactamente el punto
+               donde estaba el dedo.
+            */
+
+            const centroX =
+                r.left +
+                r.width / 2;
+
+            const centroY =
+                r.top +
+                r.height / 2;
+
+            agarreOffsetX =
+                x - centroX;
+
+            agarreOffsetY =
+                y - centroY;
+
+            framesAbiertos = 0;
+
+            residuo.classList.add(
+                "agarrado"
+            );
+
+            mostrarTappa(
+                x,
+                y
+            );
+
+        }
+
+    }
+
+    /* =====================================================
+       MOVER
+    ===================================================== */
+
+    if(
+        pellizcando &&
+        agarrado
+    ){
+
+        moverResiduo(
+            x,
+            y
+        );
+
+        buscarTacho();
+
+    }
+
+    /* =====================================================
+       SOLTAR
+    ===================================================== */
+
+    if(
+        agarrado &&
+        !pellizcando
+    ){
+
+        framesAbiertos++;
+
+        /*
+           NO soltamos inmediatamente.
+
+           Esperamos varios frames.
+        */
+
+        if(
+            framesAbiertos >=
+            FRAMES_PARA_SOLTAR
+        ){
+
+            soltarResiduo();
+
+        }
+
+    }else{
+
+        framesAbiertos = 0;
+
+    }
+
+    ultimoEstadoPinza =
+        pellizcando;
+
+}
+
+/* =========================================================
+   CÁMARA
+========================================================= */
+
+let camaraActivada =
+    false;
+
+let solicitandoCamara =
+    false;
+
+async function activarCamara(){
+
+    if(
+        camaraActivada ||
+        solicitandoCamara
+    ){
+
+        return;
+
+    }
+
+    solicitandoCamara =
+        true;
+
+    try{
+
+        if(
+            !navigator.mediaDevices ||
+            !navigator.mediaDevices.getUserMedia
+        ){
+
+            throw new Error(
+                "Cámara no disponible"
+            );
+
+        }
+
+        const stream =
+            await navigator.mediaDevices
+            .getUserMedia({
+
+                video:{
+
+                    facingMode:{
+                        ideal:"user"
+                    },
+
+                    width:{
+                        ideal:1280
+                    },
+
+                    height:{
+                        ideal:720
+                    },
+
+                    frameRate:{
+                        ideal:30
+                    }
+
+                },
+
+                audio:false
+
+            });
+
+        video.srcObject =
+            stream;
+
+        await video.play();
+
+        camaraActivada =
+            true;
+
+        permisoCamara.classList.remove(
+            "mostrar"
+        );
+
+        estadoMano.textContent =
+            "🧠 Cargando detector de mano...";
+
+        await iniciarMediaPipe();
+
+        estadoMano.textContent =
+            "🖐️ Muestra tu mano";
+
+    }catch(error){
+
+        console.error(
+            "Error de cámara:",
+            error
+        );
+
+        camaraActivada =
+            false;
+
+        estadoMano.textContent =
+            "⚠️ No se pudo activar la cámara";
+
+        permisoCamara.classList.add(
+            "mostrar"
+        );
+
+    }
+
+    solicitandoCamara =
+        false;
+
+}
+
+/* =========================================================
+   JUGAR
+========================================================= */
+
+comenzarJuego.addEventListener(
+    "click",
+    ()=>{
+
+        obtenerAudio();
+
+        iniciarAudio();
+
+        pantallaInicio.classList.remove(
+            "activa"
+        );
+
+        pantallaFinal.classList.remove(
+            "activa"
+        );
+
+        pantallaJuego.classList.add(
+            "activa"
+        );
+
+        reiniciarJuego();
+
+        if(!camaraActivada){
+
+            permisoCamara.classList.add(
+                "mostrar"
+            );
+
+        }else{
+
+            permisoCamara.classList.remove(
+                "mostrar"
+            );
+
+        }
+
+    }
+);
+
+/* =========================================================
+   CÁMARA
+========================================================= */
+
+btnCamara.addEventListener(
+    "click",
+    ()=>{
+
+        obtenerAudio();
+
+        iniciarAudio();
+
+        activarCamara();
+
+    }
+);
+
+/* =========================================================
+   PALETA
+========================================================= */
+
+btnPaleta.addEventListener(
+    "click",
+    event=>{
+
+        event.stopPropagation();
+
+        paleta.classList.toggle(
+            "abierta"
+        );
+
+    }
+);
+
+document
+.querySelectorAll(".color")
+.forEach(
+    boton=>{
+
+        boton.addEventListener(
+            "click",
+            ()=>{
+
+                const color =
+                    boton.dataset.color;
+
+                document.documentElement.style
+                .setProperty(
+                    "--acento",
+                    color
+                );
+
+                document.documentElement.style
+                .setProperty(
+                    "--rat-color",
+                    color
+                );
+
+                document.documentElement.style
+                .setProperty(
+                    "--rat-dark",
+                    oscurecerColor(
+                        color,
+                        .55
+                    )
+                );
+
+                paleta.classList.remove(
+                    "abierta"
+                );
+
+            }
+        );
+
+    }
+);
+
+/* =========================================================
+   OSCURECER COLOR
+========================================================= */
+
+function oscurecerColor(
+    hex,
+    cantidad
+){
+
+    hex =
+        hex.replace("#","");
+
+    const r =
+        parseInt(
+            hex.substring(0,2),
+            16
+        );
+
+    const g =
+        parseInt(
+            hex.substring(2,4),
+            16
+        );
+
+    const b =
+        parseInt(
+            hex.substring(4,6),
+            16
+        );
+
+    return "#" +
+
+        Math.round(
+            r * cantidad
+        )
+        .toString(16)
+        .padStart(2,"0") +
+
+        Math.round(
+            g * cantidad
+        )
+        .toString(16)
+        .padStart(2,"0") +
+
+        Math.round(
+            b * cantidad
+        )
+        .toString(16)
+        .padStart(2,"0");
+
+}
+
+/* =========================================================
+   CERRAR PALETA
+========================================================= */
+
+document.addEventListener(
+    "pointerdown",
+    event=>{
+
+        if(
+            !paleta.contains(
+                event.target
+            ) &&
+            event.target !==
+            btnPaleta
+        ){
+
+            paleta.classList.remove(
+                "abierta"
+            );
+
+        }
+
+    }
+);
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+function terminarJuego(){
+
+    detenerMusica();
+
+    pantallaJuego.classList.remove(
+        "activa"
+    );
+
+    pantallaFinal.classList.add(
+        "activa"
+    );
+
+    puntosFinal.textContent =
+        puntos +
+        " puntos";
+
+}
+
+/* =========================================================
+   OTRA VEZ
+========================================================= */
+
+jugarOtraVez.addEventListener(
+    "click",
+    ()=>{
+
+        pantallaFinal.classList.remove(
+            "activa"
+        );
+
+        pantallaJuego.classList.add(
+            "activa"
+        );
+
+        reiniciarJuego();
+
+        iniciarAudio();
+
+        if(camaraActivada){
+
+            permisoCamara.classList.remove(
+                "mostrar"
+            );
+
+            estadoMano.textContent =
+                "🖐️ Muestra tu mano";
+
+        }else{
+
+            permisoCamara.classList.add(
+                "mostrar"
+            );
+
+        }
+
+    }
+);
+
+/* =========================================================
+   INICIO
+========================================================= */
+
+console.log(
+    "🌱 ECO MASTER iniciado"
+);
+
+console.log(
+    "🖐️ Sistema de agarre estable"
+);
+
+console.log(
+    "↔️ Movimiento izquierda/derecha habilitado"
+);
+
+console.log(
+    "🎯 El objeto conserva el punto de agarre"
+);
+
+console.log(
+    "🗑️ Soltar fuera del tacho no penaliza"
+);
+
+</script>
+
+</body>
+</html>
